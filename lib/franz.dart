@@ -4,9 +4,10 @@
 library;
 
 export 'src/kafka_configuration.dart';
-export 'src/kafka_server.dart';
 export 'src/kafka_instance.dart';
+export 'src/kafka_server.dart';
 export 'src/kafka_topic.dart';
+export 'src/models/active_consumer.dart';
 export 'src/models/consumer_offset.dart';
 export 'src/models/consumer_record.dart';
 
