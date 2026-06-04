@@ -1,3 +1,7 @@
+## 0.3.3
+
+- Expose `ActiveConsumer` class
+
 ## 0.3.2
 
 - Added support for a range of librdkafka versions to avoid minor patches causing lib incompatibility
