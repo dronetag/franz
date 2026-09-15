@@ -1,7 +1,8 @@
 name: franz
 description: Dart library using librdkafka via FFI
-version: 0.3.3
-repository: https://github.com/marianhlavac/franz
+version: 1.0.0
+repository: https://github.com/dronetag/franz
+publish_to: https://dart.cloudsmith.io/dronetag/software/
 
 environment:
   sdk: ^3.7.2
