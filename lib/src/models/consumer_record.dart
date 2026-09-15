@@ -28,10 +28,7 @@ class ConsumerRecord<KT, PT> {
             ? '${object.substring(0, maxLength)}...'
             : object),
       List<int>() =>
-        object
-                .take(maxLength)
-                .map((b) => b.toRadixString(maxLength))
-                .join(' ') +
+        object.take(maxLength).map((b) => b.toRadixString(16)).join(' ') +
             (object.length > maxLength ? '...' : ''),
       null => 'null',
       _ => 'unknown type?',

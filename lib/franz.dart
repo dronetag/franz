@@ -3,6 +3,7 @@
 /// More dartdocs go here.
 library;
 
+export 'src/exceptions.dart';
 export 'src/kafka_configuration.dart';
 export 'src/kafka_instance.dart';
 export 'src/kafka_server.dart';
