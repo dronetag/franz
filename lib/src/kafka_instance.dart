@@ -8,7 +8,6 @@ import 'package:franz/librdkafka/loader.dart';
 import 'package:franz/src/utils/error_handler.dart';
 
 import '../librdkafka/generated_bindings.g.dart';
-import 'exceptions.dart';
 import 'utils/variable_arguments.dart';
 
 part 'kafka_consumer.dart';

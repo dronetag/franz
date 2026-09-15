@@ -12,7 +12,7 @@ class KafkaProducer extends _KafkaInstance {
     required String topic,
     required Uint8List payload,
     Uint8List? key,
-    int partition = 0,
+    int partition = RD_KAFKA_PARTITION_UA,
     Map<String, Uint8List>? headers,
   }) {
     final args = VariableArguments();
@@ -32,14 +32,18 @@ class KafkaProducer extends _KafkaInstance {
     final result = librdkafka.rd_kafka_produceva(_$native, vus, args.count);
     final errorCode = librdkafka.rd_kafka_error_code(result);
 
+    if (errorCode != rd_kafka_resp_err_t.RD_KAFKA_RESP_ERR_NO_ERROR) {
+      // On failure the headers stay in application ownership.
+      args.destroyHeaders();
+    }
+    // The returned error object (if any) is owned by the caller.
+    if (result != nullptr) librdkafka.rd_kafka_error_destroy(result);
+
     malloc.free(vus);
     args.destroy();
 
     if (errorCode != rd_kafka_resp_err_t.RD_KAFKA_RESP_ERR_NO_ERROR) {
-      throw KafkaProduceError(
-        errorNumber: errorCode.value,
-        // errorText: librdkafka.rd_kafka_error_string(result),
-      );
+      throw KafkaProduceError(errorNumber: errorCode.value);
     }
   }
 
@@ -47,7 +51,7 @@ class KafkaProducer extends _KafkaInstance {
     required String topic,
     required String payload,
     String? key,
-    int partition = 0,
+    int partition = RD_KAFKA_PARTITION_UA,
     Map<String, Uint8List>? headers,
   }) => produceMessage(
     topic: topic,
