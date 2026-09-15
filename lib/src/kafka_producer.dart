@@ -12,7 +12,7 @@ class KafkaProducer extends _KafkaInstance {
     required String topic,
     required Uint8List payload,
     Uint8List? key,
-    int partition = 0,
+    int partition = RD_KAFKA_PARTITION_UA,
     Map<String, Uint8List>? headers,
   }) {
     final args = VariableArguments();
@@ -47,7 +47,7 @@ class KafkaProducer extends _KafkaInstance {
     required String topic,
     required String payload,
     String? key,
-    int partition = 0,
+    int partition = RD_KAFKA_PARTITION_UA,
     Map<String, Uint8List>? headers,
   }) => produceMessage(
     topic: topic,

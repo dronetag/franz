@@ -6,7 +6,7 @@ class KafkaProducerTopic extends KafkaTopic {
   void produceMessage({
     required Uint8List payload,
     Uint8List? key,
-    int partition = 0,
+    int partition = RD_KAFKA_PARTITION_UA,
   }) {
     final keyData = key?.toNative();
     final messageData = payload.toNative();
@@ -35,7 +35,7 @@ class KafkaProducerTopic extends KafkaTopic {
   void produceStringMessage({
     required String payload,
     String? key,
-    int partition = 0,
+    int partition = RD_KAFKA_PARTITION_UA,
   }) => produceMessage(
     payload: utf8.encode(payload),
     key: key != null ? utf8.encode(key) : null,
